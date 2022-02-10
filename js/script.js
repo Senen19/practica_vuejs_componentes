@@ -43,19 +43,19 @@ var arrayEdit=[];
 // TODO: Componente edit-form
 Vue.component('edit-form', {
     template: "#editForm",
-    props: ["pelicula","pos"], methods:{
-        closeForm: function(pos){
-            arrayEdit.splice(arrayEdit.indexOf(pos),1);
+    props: ["item","index"], methods:{
+        closeForm: function(index){
+            arrayEdit.splice(arrayEdit.indexOf(index),1);
         }
     }
 })
 
 // TODO: Componente item-data
 Vue.component('item-data', {
-    props: ["pelicula","pos"],
+    props: ["item","index"],
     methods:{
-        toggleEditFormVisibility: function(pos){
-            arrayEdit.push(pos);
+        toggleEditFormVisibility: function(index){
+            arrayEdit.push(index);
         }},
     template: '#itemData'
 })

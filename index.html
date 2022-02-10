@@ -21,8 +21,8 @@
             </div>   
             <div class="container">
                     <div class="card-group" style="margin:0 50px;">
-                        <item-data v-for="item in col.collection.items" v-if="!editArr.includes(col.collection.items.indexOf(item))"  :pelicula="item" :pos="col.collection.items.indexOf(item)" ></item-data>
-                        <edit-form v-else :pelicula="item" :pos="col.collection.items.indexOf(item)"></edit-form>
+                        <item-data v-for="item in col.collection.items" v-if="!editArr.includes(col.collection.items.indexOf(item))"  :item="item" :index="col.collection.items.indexOf(item)" ></item-data>
+                        <edit-form v-else :item="item" :index="col.collection.items.indexOf(item)"></edit-form>
                     </div>
             </div>
         </div>
@@ -32,28 +32,28 @@
         <!-- Plantilla para el componente edit-form -->
         <script type="text/x-template" id="editForm">
             <div class="card">
-                <div class="card-body">
-                    <dl v-for="dato in pelicula.data">
-                            <dt>{{dato.prompt}}</dt>
-                            <input v-if="dato.prompt != 'Description'" v-model="dato.value" type="text" v-bind:id="dato.name+pos">
-                            <textarea v-else v-model="dato.value" type="text" v-bind:id="dato.name+pos"></textarea>
-                    </dl>
-                    <button v-on:click="closeForm(pos)"  class="btn btn-secondary">Guardar</button>
+                    <div class="card-body">
+                        <dl v-for="dato in item.data">
+                                <dt>{{dato.prompt}}</dt>
+                                <input v-if="dato.prompt != 'Description'" v-model="dato.value" type="text" v-bind:id="dato.name+index">
+                                <textarea v-else v-model="dato.value" type="text" v-bind:id="dato.name+index"></textarea>
+                        </dl>
+                        <button v-on:click="closeForm(index)"  class="btn btn-secondary">Guardar</button>
+                    </div>
                 </div>
-            </div>
         </script>
 
         
         <script type="text/x-template" id="itemData">
             <div class="card">
                     <div class="card-body">
-                        <dl v-for="dato in pelicula.data">
+                        <dl v-for="dato in item.data">
                             <dt>{{dato.prompt}}</dt>
                             <dd>{{dato.value}}</dd>
                         </dl>
                         
-                         <a v-bind:href="pelicula.href" class="btn btn-primary">Ver</a>
-                         <button v-on:click="toggleEditFormVisibility(pos)"  class="btn btn-secondary">Editar</button>
+                         <a v-bind:href="item.href" class="btn btn-primary">Ver</a>
+                         <button v-on:click="toggleEditFormVisibility(index)"  class="btn btn-secondary">Editar</button>
                      </div>
                  </div>  
         </script>
