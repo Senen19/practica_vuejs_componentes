@@ -32,14 +32,15 @@
         <!-- Plantilla para el componente edit-form -->
         <script type="text/x-template" id="editForm">
             <div class="card">
-                    <div class="card-body">
-                        <dl v-for="dato in pelicula.data">
-                                <dt>{{dato.prompt}}</dt>
-                                <input v-if="dato.prompt != 'Description'" v-model="dato.value" type="text" v-bind:id="dato.name+pos">
-                                <edit-form v-else :pelicula="item" :pos="col.collection.items.indexOf(item)"></edit-form>
-                        </dl>
-                    </div>
+                <div class="card-body">
+                    <dl v-for="dato in pelicula.data">
+                            <dt>{{dato.prompt}}</dt>
+                            <input v-if="dato.prompt != 'Description'" v-model="dato.value" type="text" v-bind:id="dato.name+pos">
+                            <textarea v-else v-model="dato.value" type="text" v-bind:id="dato.name+pos"></textarea>
+                    </dl>
+                    <button v-on:click="closeForm(pos)"  class="btn btn-secondary">Guardar</button>
                 </div>
+            </div>
         </script>
 
         

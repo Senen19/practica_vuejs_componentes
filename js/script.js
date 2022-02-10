@@ -38,6 +38,7 @@ var server_data = {
     }
 };
 
+var arrayEdit=[];
 
 // TODO: Componente edit-form
 Vue.component('edit-form', {
