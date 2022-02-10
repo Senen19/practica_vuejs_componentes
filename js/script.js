@@ -44,9 +44,19 @@ var arrayEdit=[];
 Vue.component('edit-form', {
     template: "#editForm",
     props: ["item","index"], methods:{
-        closeForm: function(index){
-            
-        }
+        
+        data: function() {
+            return {
+                datos: false,
+                formulario : true
+            }
+        },
+
+    methods:{
+        closeForm: function(){
+            this.datos = true,
+            this.formulario = false
+    }}
     }
 })
 

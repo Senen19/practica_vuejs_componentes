@@ -33,12 +33,12 @@
         <script type="text/x-template" id="editForm">
             <div class="card">
                     <div class="card-body">
-                        <dl v-for="dato in item.data">
+                        <dl v-for="dato in item.data" v-show="formulario">
                                 <dt>{{dato.prompt}}</dt>
                                 <input v-if="dato.prompt != 'Description'" v-model="dato.value" type="text" v-bind:id="dato.name+index">
                                 <textarea v-else v-model="dato.value" type="text" v-bind:id="dato.name+index"></textarea>
                         </dl>
-                        <button v-on:click="closeForm(index)"  class="btn btn-secondary">Guardar</button>
+                        <button v-on:click="closeForm()"  class="btn btn-secondary">Guardar</button>
                     </div>
                 </div>
         </script>
@@ -53,7 +53,7 @@
                         </dl>
                         
                          <a v-bind:href="item.href" class="btn btn-primary">Ver</a>
-                         <button v-on:click="toggleEditFormVisibility(index)"  class="btn btn-secondary">Editar</button>
+                         <button v-on:click="toggleEditFormVisibility()"  class="btn btn-secondary">Editar</button>
                      </div>
                  </div>  
         </script>
