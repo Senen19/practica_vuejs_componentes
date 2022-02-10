@@ -20,13 +20,10 @@
                     <h1 class="display-4" id="title">{{ col.collection.title }}</h1>
             </div>   
             <div class="container">
-                <div class="card-group">
-                    <div class="card">
-                        <item-data></item-data>
-                        <item-data></item-data>
-                        <item-data></item-data>
+                    <div class="card-group" style="margin:0 50px;">
+                        <item-data v-for="item in col.collection.items" v-if="!editArr.includes(col.collection.items.indexOf(item))"  :pelicula="item" :pos="col.collection.items.indexOf(item)" ></item-data>
+                        <edit-form v-else :pelicula="item" :pos="col.collection.items.indexOf(item)"></edit-form>
                     </div>
-                </div>
             </div>
         </div>
 
@@ -34,31 +31,31 @@
 
         <!-- Plantilla para el componente edit-form -->
         <script type="text/x-template" id="editForm">
-
-            <!--
-                 TODO: Componente edit-form
-            -->
-
+            <div class="card">
+                    <div class="card-body">
+                        <dl v-for="dato in pelicula.data">
+                                <dt>{{dato.prompt}}</dt>
+                                <input v-if="dato.prompt != 'Description'" v-model="dato.value" type="text" v-bind:id="dato.name+pos">
+                                <textarea v-else v-model="dato.value" type="text" v-bind:id="dato.name+pos"></textarea>
+                        </dl>
+                        <button v-on:click="closeForm(pos)"  class="btn btn-secondary">Guardar</button>
+                    </div>
+                </div>
         </script>
 
         
         <script type="text/x-template" id="itemData">
-            <div class="card-body">
-                <dl>
-                    <dt class="card-title">
-                        {{ peli.prompt }}
-                    </dt>
-                    <dd class="card-text">
-                        {{peli.value}}
-                    </dd>
-                </dl>
-            </div>
-            <div class="item-data">
-                <div class="card-body">
-                    <a v-bind:href="item.href" class="btn btn-primary" role="button">Ver</a>
-                    <button v:onclick="toggleEditFormVisibility" class="btn btn-secondary">Editar</button>
-                </div>
-            </div>     
+            <div class="card">
+                    <div class="card-body">
+                        <dl v-for="peli in pelicula.data">
+                            <dt>{{peli.prompt}}</dt>
+                            <dd>{{peli.value}}</dd>
+                        </dl>
+                        
+                         <a v-bind:href="pelicula.href" class="btn btn-primary">Ver</a>
+                         <button v-on:click="toggleEditFormVisibility(pos)"  class="btn btn-secondary">Editar</button>
+                     </div>
+                 </div>  
         </script>
 
 
