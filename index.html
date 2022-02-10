@@ -19,12 +19,10 @@
             <div class="jumbotron">
                     <h1 class="display-4" id="title">{{ col.collection.title }}</h1>
             </div>   
-            <div class="container">
+            
                     <div class="card-group" style="margin:0 50px;">
-                        <item-data v-for="item in col.collection.items" v-if="!editArr.includes(col.collection.items.indexOf(item))"  :item="item" :index="col.collection.items.indexOf(item)" ></item-data>
-                        <edit-form v-else :item="item" :index="col.collection.items.indexOf(item)"></edit-form>
+                        <item-data v-for="item in col.collection.items" :item="item"></item-data>
                     </div>
-            </div>
         </div>
 
 
@@ -33,12 +31,11 @@
         <script type="text/x-template" id="editForm">
             <div class="card">
                     <div class="card-body">
-                        <dl v-for="dato in item.data" v-show="formulario">
+                        <dl v-for="dato in item.data">
                                 <dt>{{dato.prompt}}</dt>
-                                <input v-if="dato.prompt != 'Description'" v-model="dato.value" type="text" v-bind:id="dato.name+index">
-                                <textarea v-else v-model="dato.value" type="text" v-bind:id="dato.name+index"></textarea>
+                                <input v-model="dato.value" type="text">
                         </dl>
-                        <button v-on:click="closeForm()"  class="btn btn-secondary">Guardar</button>
+                        <button v-on:click="closeForm"  class="btn btn-secondary">Guardar</button>
                     </div>
                 </div>
         </script>
@@ -46,16 +43,23 @@
         
         <script type="text/x-template" id="itemData">
             <div class="card">
-                    <div class="card-body">
-                        <dl v-for="dato in item.data" v-show="datos">
+                    <div class="card-body" v-show="datos">
+                        <dl v-for="dato in item.data">
                             <dt>{{dato.prompt}}</dt>
                             <dd>{{dato.value}}</dd>
                         </dl>
                         
-                         <a v-bind:href="item.href" class="btn btn-primary">Ver</a>
-                         <button v-on:click="toggleEditFormVisibility()"  class="btn btn-secondary">Editar</button>
+                         <a v-bind:href="item.href" class="btn btn-primary" role="button">Ver</a>
+                         <button v-on:click="toggleEditFormVisibility"  class="btn btn-secondary">Editar</button>
                      </div>
-                 </div>  
+                 <div class="card-body" v-show="formulario">
+                    <dl v-for="dato in item.data" >
+                            <dt>{{dato.prompt}}</dt>
+                            <input v-model="dato.value" type="text">
+                    </dl>
+                    <button v-on:click="closeForm"  class="btn btn-secondary">Guardar</button>
+                </div>
+            </div>
         </script>
 
 

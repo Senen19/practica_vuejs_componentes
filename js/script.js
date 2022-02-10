@@ -38,8 +38,6 @@ var server_data = {
     }
 };
 
-var arrayEdit=[];
-
 // TODO: Componente edit-form
 Vue.component('edit-form', {
     template: "#editForm",
@@ -53,9 +51,9 @@ Vue.component('edit-form', {
         },
 
     methods:{
-        closeForm: function(){
-            this.datos = true,
-            this.formulario = false
+        closeForm(){
+            this.datos = true;
+            this.formulario = false;
     }}
     }
 })
@@ -72,9 +70,9 @@ Vue.component('item-data', {
     },
     
     methods:{
-        toggleEditFormVisibility: function(){
-            this.datos = false,
-            this.formulario = true
+        toggleEditFormVisibility(){
+            this.datos = false;
+            this.formulario = true;
         }},
     template: '#itemData'
 })
@@ -84,8 +82,7 @@ Vue.component('item-data', {
 var app = new Vue({
     el: '#app',
     data: {
-        col: server_data,
-        editArr:arrayEdit
+        col: server_data
     }
 });
 
