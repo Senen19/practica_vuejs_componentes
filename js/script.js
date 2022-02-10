@@ -46,11 +46,11 @@ Vue.component('edit-form', {
 
 // TODO: Componente item-data
 Vue.component('item-data', {
-    data: function() {
-        return{
-            col:server_data
-        }
-    },
+    props: ["pelicula","pos"],
+    methods:{
+        toggleEditFormVisibility: function(pos){
+            arrayEdit.push(pos);
+        }},
     template: '#itemData'
 })
 
