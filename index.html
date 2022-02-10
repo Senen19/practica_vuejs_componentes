@@ -47,7 +47,7 @@
         <script type="text/x-template" id="itemData">
             <div class="card">
                     <div class="card-body">
-                        <dl v-for="dato in item.data">
+                        <dl v-for="dato in item.data" v-show="datos">
                             <dt>{{dato.prompt}}</dt>
                             <dd>{{dato.value}}</dd>
                         </dl>

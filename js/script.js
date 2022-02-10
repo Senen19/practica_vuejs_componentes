@@ -45,7 +45,7 @@ Vue.component('edit-form', {
     template: "#editForm",
     props: ["item","index"], methods:{
         closeForm: function(index){
-            arrayEdit.splice(arrayEdit.indexOf(index),1);
+            
         }
     }
 })
@@ -53,9 +53,18 @@ Vue.component('edit-form', {
 // TODO: Componente item-data
 Vue.component('item-data', {
     props: ["item","index"],
+    
+    data: function() {
+        return {
+            datos: true,
+            formulario : false
+        }
+    },
+    
     methods:{
-        toggleEditFormVisibility: function(index){
-            arrayEdit.push(index);
+        toggleEditFormVisibility: function(){
+            this.datos = false,
+            this.formulario = true
         }},
     template: '#itemData'
 })
