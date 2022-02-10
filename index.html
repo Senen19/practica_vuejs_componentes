@@ -47,9 +47,9 @@
         <script type="text/x-template" id="itemData">
             <div class="card">
                     <div class="card-body">
-                        <dl v-for="peli in pelicula.data">
-                            <dt>{{peli.prompt}}</dt>
-                            <dd>{{peli.value}}</dd>
+                        <dl v-for="dato in pelicula.data">
+                            <dt>{{dato.prompt}}</dt>
+                            <dd>{{dato.value}}</dd>
                         </dl>
                         
                          <a v-bind:href="pelicula.href" class="btn btn-primary">Ver</a>
