@@ -41,7 +41,12 @@ var server_data = {
 
 // TODO: Componente edit-form
 Vue.component('edit-form', {
-
+    template: "#editForm",
+    props: ["pelicula","pos"], methods:{
+        closeForm: function(pos){
+            arrayEdit.splice(arrayEdit.indexOf(pos),1);
+        }
+    }
 })
 
 // TODO: Componente item-data
