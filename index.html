@@ -21,7 +21,7 @@
             </div>   
             
                     <div class="card-group" style="margin:0 50px;">
-                        <item-data v-for="item in col.collection.items" :item="item"></item-data>
+                        <item-data v-for="item in col.collection.items" :item="item" refs="formClosed"></item-data>
                     </div>
         </div>
 
@@ -57,7 +57,7 @@
                             <dt>{{dato.prompt}}</dt>
                             <input v-model="dato.value" type="text">
                     </dl>
-                    <button v-on:click="closeForm"  class="btn btn-secondary">Guardar</button>
+                    <button v-on:click="closeForm"  class="btn btn-secondary">Cerrar</button>
                 </div>
             </div>
         </script>
