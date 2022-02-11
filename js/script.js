@@ -51,9 +51,10 @@ Vue.component('edit-form', {
         },
 
     methods:{
-        closeForm(){
-            this.datos = true;
-            this.formulario = false;
+        closeForm:{
+            formClosed() {
+                toggleEditFormVisibility();
+            }
     }}
     }
 })
